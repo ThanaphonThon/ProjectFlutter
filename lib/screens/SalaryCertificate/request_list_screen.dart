@@ -1,45 +1,39 @@
 import 'package:app_project/widgets/bottom_navigation_bar_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:app_project/widgets/filter_dialog.dart';
+import 'package:app_project/screens/SalaryCertificate/request_item.dart';
 import 'create_request_screen.dart';
 import 'request_detail_screen.dart';
 
-class RequestListScreen extends StatefulWidget {
-  const RequestListScreen({super.key});
+class SalaryCertificateRequestListScreen extends StatefulWidget {
+  const SalaryCertificateRequestListScreen({super.key});
 
   @override
-  _RequestListScreenState createState() => _RequestListScreenState();
+  _SalaryCertificateRequestListScreenState createState() =>
+      _SalaryCertificateRequestListScreenState();
 }
 
-class _RequestListScreenState extends State<RequestListScreen> {
+class _SalaryCertificateRequestListScreenState
+    extends State<SalaryCertificateRequestListScreen> {
   final List<RequestItem> requests = [
     RequestItem(
-      code: 'CODE-30202205',
-      date: '23/09/2022',
-      time: '8:00',
-      status: RequestStatus.waiting,
-    ),
+        code: 'CODE-30202205',
+        date: '23/09/2022',
+        time: '8:00',
+        status: RequestStatus.waiting),
     RequestItem(
-      code: 'CODE-30202204',
-      date: '23/09/2022',
-      time: '8:00',
-      status: RequestStatus.notApproved,
-    ),
+        code: 'CODE-30202204',
+        date: '23/09/2022',
+        time: '8:00',
+        status: RequestStatus.notApproved),
     RequestItem(
-      code: 'CODE-30202203',
-      date: '23/09/2022',
-      time: '8:00',
-      status: RequestStatus.approved,
-    ),
-    RequestItem(
-      code: 'CODE-30202209',
-      date: '23/09/2022',
-      time: '8:00',
-      status: RequestStatus.saveDraft,
-    ),
+        code: 'CODE-30202209',
+        date: '23/09/2022',
+        time: '8:00',
+        status: RequestStatus.saveDraft),
   ];
 
-  int _currentIndex = 0; // ค่าเริ่มต้นของ currentIndex
+  int _currentIndex = 3;
 
   @override
   Widget build(BuildContext context) {
@@ -273,25 +267,4 @@ class RequestListItem extends StatelessWidget {
       style: TextStyle(color: color, fontWeight: FontWeight.w500),
     );
   }
-}
-
-class RequestItem {
-  final String code;
-  final String date;
-  final String time;
-  final RequestStatus status;
-
-  RequestItem({
-    required this.code,
-    required this.date,
-    required this.time,
-    required this.status,
-  });
-}
-
-enum RequestStatus {
-  waiting,
-  approved,
-  notApproved,
-  saveDraft,
 }

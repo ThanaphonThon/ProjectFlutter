@@ -1,17 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:app_project/screens/WorkCertificate/request_list_screen.dart'; // Import Work Certificate
-import 'package:app_project/screens/SalaryCertificate/request_list_screen.dart'; // Import Salary Certificate
-import 'package:app_project/widgets/bottom_navigation_bar_widget.dart'; // Import Bottom Navigation Widget
+import 'HumanResourse/survey_list_screen.dart'; // Import SurveyListScreen
 
-class PersonalInfoScreen extends StatefulWidget {
-  const PersonalInfoScreen({super.key});
+class PersonalInfoScreen2 extends StatefulWidget {
+  const PersonalInfoScreen2({super.key});
 
   @override
-  _PersonalInfoScreenState createState() => _PersonalInfoScreenState();
+  _PersonalInfoScreen2State createState() => _PersonalInfoScreen2State();
 }
 
-class _PersonalInfoScreenState extends State<PersonalInfoScreen> {
-  int _currentIndex = 3;
+class _PersonalInfoScreen2State extends State<PersonalInfoScreen2> {
+  int _currentIndex = 2;
 
   void _onItemTapped(int index) {
     setState(() {
@@ -22,6 +20,7 @@ class _PersonalInfoScreenState extends State<PersonalInfoScreen> {
   Widget _buildMenuItem({
     required String title,
     required IconData icon,
+    required Color iconColor,
     required VoidCallback onTap,
   }) {
     return GestureDetector(
@@ -38,7 +37,7 @@ class _PersonalInfoScreenState extends State<PersonalInfoScreen> {
           children: [
             Icon(
               icon,
-              color: Colors.deepOrange,
+              color: iconColor,
               size: 32,
             ),
             const SizedBox(height: 8),
@@ -67,17 +66,8 @@ class _PersonalInfoScreenState extends State<PersonalInfoScreen> {
           title: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const Row(
-                children: [
-                  CircleAvatar(
-                    radius: 20,
-                    backgroundColor: Colors.white,
-                  ),
-                  SizedBox(width: 8),
-                ],
-              ),
               const Text(
-                "E-form",
+                "Human Resource",
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: 20,
@@ -104,38 +94,55 @@ class _PersonalInfoScreenState extends State<PersonalInfoScreen> {
           crossAxisSpacing: 16,
           children: [
             _buildMenuItem(
-              title: 'Work Certificate',
-              icon: Icons.work,
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) =>
-                        const WorkCertificateRequestListScreen(),
-                  ),
-                );
-              },
+              title: 'Leave',
+              icon: Icons.cancel,
+              iconColor: Colors.deepOrange,
+              onTap: () {},
             ),
             _buildMenuItem(
-              title: 'Salary Certificate',
+              title: 'Time Attendance',
+              icon: Icons.access_time,
+              iconColor: Colors.deepOrange,
+              onTap: () {},
+            ),
+            _buildMenuItem(
+              title: 'E-pay Slip',
+              icon: Icons.receipt_long,
+              iconColor: Colors.deepOrange,
+              onTap: () {},
+            ),
+            _buildMenuItem(
+              title: 'Hope',
+              icon: Icons.local_hospital,
+              iconColor: Colors.grey,
+              onTap: () {},
+            ),
+            _buildMenuItem(
+              title: 'Survey',
               icon: Icons.assignment,
+              iconColor: Colors.grey,
               onTap: () {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) =>
-                        const SalaryCertificateRequestListScreen(),
+                    builder: (context) => SurveyListScreen(),
                   ),
                 );
               },
             ),
-            // Additional menu items can be added here
           ],
         ),
       ),
-      bottomNavigationBar: BottomNavigationBarWidget(
+      bottomNavigationBar: BottomNavigationBar(
         currentIndex: _currentIndex,
         onTap: _onItemTapped,
+        items: const [
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
+          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Personal'),
+          BottomNavigationBarItem(icon: Icon(Icons.work), label: 'HR'),
+          BottomNavigationBarItem(icon: Icon(Icons.file_copy), label: 'E-Form'),
+          BottomNavigationBarItem(icon: Icon(Icons.task), label: 'Task'),
+        ],
       ),
     );
   }
